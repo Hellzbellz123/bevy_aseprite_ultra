@@ -59,7 +59,7 @@ pub struct AsepriteAnimationUiBundle {
     pub not_loaded: NotLoaded,
 }
 
-#[derive(Component, Reflect)]
+#[derive(Component, Reflect, Clone)]
 pub struct Animation {
     pub tag: Option<String>,
     pub speed: f32,
@@ -141,11 +141,11 @@ impl From<&str> for Animation {
     }
 }
 
-#[derive(Component, Default, Reflect)]
+#[derive(Component, Default, Reflect, Clone)]
 pub struct AnimationState {
-    current_frame: usize,
-    elapsed: std::time::Duration,
-    current_direction: PlayDirection,
+    pub current_frame: usize,
+    pub elapsed: std::time::Duration,
+    pub current_direction: PlayDirection,
 }
 
 impl AnimationState {
@@ -154,8 +154,8 @@ impl AnimationState {
     }
 }
 
-#[derive(Default, Reflect)]
-enum PlayDirection {
+#[derive(Default, Reflect, Clone)]
+pub enum PlayDirection {
     #[default]
     Forward,
     Backward,
@@ -167,7 +167,7 @@ pub enum AnimationEvents {
     LoopCycleFinished(Entity),
 }
 
-#[derive(Default, Reflect)]
+#[derive(Default, Reflect, Clone)]
 pub enum AnimationDirection {
     #[default]
     Forward,
@@ -188,7 +188,7 @@ impl From<RawDirection> for AnimationDirection {
     }
 }
 
-#[derive(Default, Component, Reflect)]
+#[derive(Default, Component, Reflect, Clone)]
 pub enum AnimationRepeat {
     #[default]
     Loop,

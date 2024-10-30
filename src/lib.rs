@@ -17,7 +17,7 @@ impl Plugin for BevySprityPlugin {
 pub mod prelude {
     pub use crate::animation::{
         Animation, AnimationDirection, AnimationEvents, AnimationRepeat, AsepriteAnimationBundle,
-        AsepriteAnimationUiBundle,
+        AsepriteAnimationUiBundle, AnimationState
     };
     pub use crate::loader::Aseprite;
     pub use crate::slice::{AsepriteSlice, AsepriteSliceBundle, AsepriteSliceUiBundle};
@@ -29,5 +29,5 @@ pub mod prelude {
 pub struct UiTag;
 
 /// tags an entity as not yet loaded;
-#[derive(Component, Default)]
+#[derive(Component, Default, Clone)]
 pub struct NotLoaded;
